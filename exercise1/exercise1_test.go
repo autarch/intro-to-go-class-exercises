@@ -5,6 +5,8 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"regexp"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -23,86 +25,125 @@ func TestExercise1(t *testing.T) {
 		binary = "answer"
 	}
 
-	_, err = os.Open(binary)
+	absBinary := path.Join(dir, binary)
+
+	_, err = os.Open(absBinary)
 	if err != nil {
 		t.Fatal("Looks like there is no " + binary + " binary here. Did you run go build?")
 	}
 
 	t.Log("Found a binary named " + binary)
 
-	testBinary(t, binary)
+	testBinary(t, absBinary)
 }
 
 type testcase struct {
 	args   []string
 	stdout string
-	stderr *Regexp
+	stderr *regexp.Regexp
+}
+
+var cases = []testcase{
+	testcase{
+		args:   []string{"+", "2", "4"},
+		stdout: "6",
+		stderr: nil,
+	},
+	testcase{
+		args:   []string{"+", "42", "9"},
+		stdout: "51",
+		stderr: nil,
+	},
+	testcase{
+		args:   []string{"+", "123456789", "123456790"},
+		stdout: "246913579",
+		stderr: nil,
+	},
+	testcase{
+		args:   []string{"+", "-42", "1"},
+		stdout: "-41",
+		stderr: nil,
+	},
+	testcase{
+		args:   []string{"+", "-42", "-5"},
+		stdout: "-47",
+		stderr: nil,
+	},
+	testcase{
+		args:   []string{"+", "-42"},
+		stdout: "",
+		stderr: regexp.MustCompile("This program expects 3 arguments - an operator and two numbers"),
+	},
+	testcase{
+		args:   []string{},
+		stdout: "",
+		stderr: regexp.MustCompile("This program expects 3 arguments - an operator and two numbers"),
+	},
+	testcase{
+		args:   []string{"+", "1", "2", "3"},
+		stdout: "",
+		stderr: regexp.MustCompile("This program expects 3 arguments - an operator and two numbers"),
+	},
+	testcase{
+		args:   []string{"-", "1", "2"},
+		stdout: "",
+		stderr: regexp.MustCompile("Unknown operator: -"),
+	},
 }
 
 func testBinary(t *testing.T, binary string) {
-	cases := []testcase{
-		testcase{
-			args:   {"+", "2", "4"},
-			stdout: "8",
-			stderr: nil,
-		},
-		testcase{
-			args:   {"+", "42", "9"},
-			stdout: "51",
-			stderr: nil,
-		},
-		testcase{
-			args:   {"+", "123456789", "123456790"},
-			stdout: "246913579",
-			stderr: nil,
-		},
-		testcase{
-			args:   {"+", "-42", "1"},
-			stdout: "-41",
-			stderr: nil,
-		},
-		testcase{
-			args:   {"+", "-42", "-5"},
-			stdout: "-47",
-			stderr: nil,
-		},
-	}
-
 	assert := assert.New(t)
 
 	for _, c := range cases {
-		cmd := os.Command(binary, c.args...)
+		cmd := exec.Command(binary, c.args...)
+
+		ran := path.Base(binary) + " " + strings.Join(c.args, " ")
 
 		stdout, err := cmd.StdoutPipe()
 		if err != nil {
-			t.Fatal(err)
+			t.Fatalf("%s: %s", ran, err)
 		}
 
-		stderr, err := cmd.StdoutPipe()
+		stderr, err := cmd.StderrPipe()
 		if err != nil {
-			t.Fatal(err)
+			t.Fatalf("%s: %s", ran, err)
 		}
 
 		if err = cmd.Start(); err != nil {
-			t.Fatal(err)
+			t.Fatalf("%s: %s", ran, err)
 		}
 
-		if output, err := ioutil.ReadAll(stdout); err != nil {
-			t.Fatal(err)
+		output, err := ioutil.ReadAll(stdout)
+		if err != nil {
+			t.Fatalf("%s: %s", ran, err)
 		}
 
-		if error, err := ioutil.ReadAll(stderr); err != nil {
-			t.Fatal(err)
+		error, err := ioutil.ReadAll(stderr)
+		if err != nil {
+			t.Fatalf("%s: %s", ran, err)
 		}
 
-		if err = cmd.Wait(); err != nil {
-			t.Fatal(err)
-		}
+		err = cmd.Wait()
 
-		if len(c.stdout) {
-			assert.Equal(c.stdout, output, "stdout from "+binary+" is "+c.stdout)
-		} else if c.stderr != nil {
-			assert.Regexp(c.stderr, error, "stderr from "+binary+" matches "+c.stderr.String())
+		if err != nil && c.stderr == nil {
+			assert.Fail("Ran '" + ran + "' and got an unexpected error: " + string(error))
+		} else {
+			if c.stderr != nil {
+				if err != nil {
+					assert.Regexp(c.stderr, string(error),
+						"stderr from "+binary+" matches \""+c.stderr.String()+"\"")
+				} else {
+					assert.Fail("Ran '" + ran + "' and expected an error matching \"" +
+						c.stderr.String() +
+						"\" but there was no error (stdout was \"" + string(output) + "\")")
+				}
+			} else if len(c.stdout) > 0 {
+				o := strings.TrimSpace(string(output))
+				assert.Equal(c.stdout, o,
+					"stdout from '"+ran+"' should be \""+c.stdout+"\"")
+			} else {
+				t.Fatal("test case without stdout or stderr!")
+			}
 		}
 	}
 }

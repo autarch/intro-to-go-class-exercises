@@ -7,7 +7,19 @@
    > exercise1 * 4 5
    20
 
-To run the tests, run "go build", then "./run-tests".
+If the program is given the wrong number of arguments, log a fatal error with
+this message:
+
+   This program expects 3 arguments - an operator and two numbers
+
+If the program receives an operator it doesn't expect, log a fatal error with
+this message:
+
+   Unknown operator: {operator}
+
+Where "{operator}" is replaced by the actual operator the program received.
+
+To run the tests, run "go build", then "go test -v".
 
 */
 package main
