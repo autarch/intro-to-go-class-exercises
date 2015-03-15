@@ -2,15 +2,15 @@
    operation (+ or *), and then two numbers. The numbers will always be
    integers.
 
-   > exercise1 + 2 4
+   > exercise1 2 4 +
    6
-   > exercise1 * 4 5
+   > exercise1 4 5 *
    20
 
 If the program is given the wrong number of arguments, log a fatal error with
 this message:
 
-   This program expects 3 arguments - an operator and two numbers
+   This program expects 3 arguments - two numbers and an operator
 
 If the program receives an operator it doesn't expect, log a fatal error with
 this message:

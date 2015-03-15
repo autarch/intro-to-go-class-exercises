@@ -45,47 +45,47 @@ type testcase struct {
 
 var cases = []testcase{
 	testcase{
-		args:   []string{"+", "2", "4"},
+		args:   []string{"2", "4", "+"},
 		stdout: "6",
 		stderr: nil,
 	},
 	testcase{
-		args:   []string{"+", "42", "9"},
+		args:   []string{"42", "9", "+"},
 		stdout: "51",
 		stderr: nil,
 	},
 	testcase{
-		args:   []string{"+", "123456789", "123456790"},
+		args:   []string{"123456789", "123456790", "+"},
 		stdout: "246913579",
 		stderr: nil,
 	},
 	testcase{
-		args:   []string{"+", "-42", "1"},
+		args:   []string{"-42", "1", "+"},
 		stdout: "-41",
 		stderr: nil,
 	},
 	testcase{
-		args:   []string{"+", "-42", "-5"},
+		args:   []string{"-42", "-5", "+"},
 		stdout: "-47",
 		stderr: nil,
 	},
 	testcase{
-		args:   []string{"+", "-42"},
+		args:   []string{"-42", "+"},
 		stdout: "",
-		stderr: regexp.MustCompile("This program expects 3 arguments - an operator and two numbers"),
+		stderr: regexp.MustCompile("This program expects 3 arguments - two numbers and an operator"),
 	},
 	testcase{
 		args:   []string{},
 		stdout: "",
-		stderr: regexp.MustCompile("This program expects 3 arguments - an operator and two numbers"),
+		stderr: regexp.MustCompile("This program expects 3 arguments - two numbers and an operator"),
 	},
 	testcase{
-		args:   []string{"+", "1", "2", "3"},
+		args:   []string{"1", "2", "3", "+"},
 		stdout: "",
-		stderr: regexp.MustCompile("This program expects 3 arguments - an operator and two numbers"),
+		stderr: regexp.MustCompile("This program expects 3 arguments - two numbers and an operator"),
 	},
 	testcase{
-		args:   []string{"-", "1", "2"},
+		args:   []string{"1", "2", "-"},
 		stdout: "",
 		stderr: regexp.MustCompile("Unknown operator: -"),
 	},
