@@ -12,12 +12,12 @@ func main() {
 	}
 
 	var num1, num2 int64
-	_, err := fmt.Sscanf(os.Args[1], "%d", &num1)
+	_, err := fmt.Sscan(os.Args[1], &num1)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	_, err = fmt.Sscanf(os.Args[2], "%d", &num2)
+	_, err = fmt.Sscan(os.Args[2], &num2)
 	if err != nil {
 		log.Fatal(err)
 	}
