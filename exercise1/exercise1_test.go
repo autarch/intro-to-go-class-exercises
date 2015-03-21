@@ -2,39 +2,18 @@ package main
 
 import (
 	"io/ioutil"
-	"os"
 	"os/exec"
 	"path"
 	"regexp"
 	"strings"
 	"testing"
 
+	"github.com/autarch/intro-to-go-class-exercises/helpers/findbin"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestExercise1(t *testing.T) {
-	dir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	var binary string
-	if path.Base(dir) == "exercise1" {
-		binary = "exercise1"
-	} else {
-		binary = "answer"
-	}
-
-	absBinary := path.Join(dir, binary)
-
-	_, err = os.Open(absBinary)
-	if err != nil {
-		t.Fatal("Looks like there is no " + binary + " binary here. Did you run go build?")
-	}
-
-	t.Log("Found a binary named " + binary)
-
-	testBinary(t, absBinary)
+	testBinary(t, findbin.FindBin(t))
 }
 
 type testcase struct {
