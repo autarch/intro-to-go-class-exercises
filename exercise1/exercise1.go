@@ -24,6 +24,8 @@ Where "{operator}" is replaced by the actual operator the program received.
 
 To run the tests, run "go build", then "go test -v".
 
+    > go build && go test -v
+
 You're done when all the tests pass.
 
 */
