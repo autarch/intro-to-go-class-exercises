@@ -15,12 +15,12 @@ The package should implement the following functions:
 - func NewUser(username string, password string) User { ... }
 - func PasswordIsValid(user User, password string) bool { ... }
 
-The NewUser() function should use the sha1 package to hash the password (use
-sha1.Sum()) and store it in the User struct. You'll also USE the sha1 package
-in the PasswordIsValid function to hash the string that you're passed.
+The NewUser() function should hash the password using the sha1.Sum() function
+and store it in the User struct. You'll also use the sha1 package in the
+PasswordIsValid() function to hash the string that you're passed.
 
-Note that you'll have to convert strings to byte arrays in order to pass the
-password string to sha1.Sum().
+Note that sha1.Sum() expects a byte array ([]byte), not a string, so you'll
+need to convert the strings to []byte when passing them to sha1.Sum().
 
 To run the tests, run "go test -v".
 
