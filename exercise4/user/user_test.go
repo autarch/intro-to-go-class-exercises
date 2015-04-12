@@ -10,12 +10,12 @@ func TestPasswordCheckAnd(t *testing.T) {
 	user := NewUser("bob", "pw1")
 
 	var pName username
-	pass := func(u User) {
+	pass := func(u *User) {
 		pName = u.username
 	}
 
 	var fName username
-	fail := func(u User) {
+	fail := func(u *User) {
 		fName = u.username
 	}
 

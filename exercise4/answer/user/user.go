@@ -23,11 +23,11 @@ func PasswordIsValid(u User, p string) bool {
 	return sha1.Sum([]byte(p)) == u.password
 }
 
-func PasswordCheckAnd(u User, p string, pass, fail func(u User)) {
+func PasswordCheckAnd(u User, p string, pass, fail func(u *User)) {
 	if PasswordIsValid(u, p) {
-		pass(u)
+		pass(&u)
 	} else {
-		fail(u)
+		fail(&u)
 	}
 }
 
