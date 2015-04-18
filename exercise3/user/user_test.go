@@ -99,6 +99,6 @@ func TestFunctions(t *testing.T) {
 	assert.Equal(u.password, password(sha1.Sum([]byte("apple"))),
 		"the returned user's password is the hash for \"apple\"")
 
-	assert.True(PasswordIsValid(u, "apple"), "PassIsValid returns true for a matching password")
-	assert.False(PasswordIsValid(u, "orange"), "PassIsValid returns false for a non-matching password")
+	assert.True(PasswordIsValid(u, "apple"), "PasswordIsValid returns true for a matching password")
+	assert.False(PasswordIsValid(u, "orange"), "PasswordIsValid returns false for a non-matching password")
 }
