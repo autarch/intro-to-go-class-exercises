@@ -8,7 +8,7 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	user, err := NewUser("", "password")
+	u, err := NewUser("", "password")
 
 	assert.NotEqual(t, err, nil, "got an error when the username is empty")
 	assert.Equal(
@@ -19,7 +19,7 @@ func TestNew(t *testing.T) {
 	)
 	assert.Equal(t, user, User{}, "user returned on error is empty")
 
-	user, err = NewUser("username", "")
+	u, err = NewUser("username", "")
 
 	assert.NotEqual(t, err, nil, "got an error when the password is empty")
 	assert.Equal(
@@ -30,7 +30,7 @@ func TestNew(t *testing.T) {
 	)
 	assert.Equal(t, user, User{}, "user returned on error is empty")
 
-	user, err = NewUser("username", "password")
+	u, err = NewUser("username", "password")
 	assert.Equal(t, err, nil, "got no error when username and password are both non-empty")
-	assert.NotEmpty(t, user, "user returned on success is not empty")
+	assert.NotEmpty(t, u, "user returned on success is not empty")
 }
