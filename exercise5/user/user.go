@@ -3,7 +3,7 @@
 For this exercise, you'll start with the code you just created for exercise
 #3 (not #4). You can paste it in below.
 
-For this exercise, you're going to alter the functions you created in exercise
+The goal for this exercise is to alter the functions you created in exercise
 #3 so that they return errors.
 
 Change the NewUser() function so that it returns two values, a User and an
