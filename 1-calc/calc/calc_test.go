@@ -55,6 +55,6 @@ var cases = []testprog.TestCase{
 	},
 }
 
-func TestExercise1(t *testing.T) {
+func TestCalcProgram(t *testing.T) {
 	testprog.TestProgram(t, cases, true)
 }
