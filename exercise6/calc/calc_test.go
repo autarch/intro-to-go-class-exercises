@@ -23,8 +23,8 @@ sum. If given *no* arguments, it returns 0.
 The Mult() function returns 0 when asked to divide by 0. Feel free to fix it
 after you've found it through testing.
 
-Feel free to use the assert package. If you do, run "go get" in your directory
-in order to download it.
+Feel free to use the assert package. See
+http://godoc.org/github.com/stretchr/testify/assert for details.
 
 Consider defining test cases in an array of arrays (or array of structs) and
 iterating over them in order to avoid repetitive code.
