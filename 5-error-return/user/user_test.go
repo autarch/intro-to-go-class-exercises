@@ -17,7 +17,7 @@ func TestNew(t *testing.T) {
 		err,
 		"got the expected error for an empty username",
 	)
-	assert.Equal(t, User{}, user, "user returned on error is empty")
+	assert.Equal(t, User{}, u, "user returned on error is empty")
 
 	u, err = NewUser("username", "")
 
@@ -28,7 +28,7 @@ func TestNew(t *testing.T) {
 		err,
 		"got the expected error for an empty password",
 	)
-	assert.Equal(t, User{}, user, "user returned on error is empty")
+	assert.Equal(t, User{}, u, "user returned on error is empty")
 
 	u, err = NewUser("username", "password")
 	assert.Equal(t, nil, err, "got no error when username and password are both non-empty")
