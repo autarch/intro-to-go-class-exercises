@@ -15,6 +15,11 @@ func TestMethods(t *testing.T) {
 		t.Fatal("Cannot continue unless NewUser() returns a User struct")
 	}
 
+	assert.Equal("ringo", u.Username(), "Username method returns username")
+
+	u.SetUsername("shiina")
+	assert.Equal("shiina", u.Username(), "Username method returns new username after call to SetUsername")
+
 	ok, err := u.PasswordIsValid("apple")
 	assert.True(ok, "PasswordIsValid returns true for a matching password")
 	assert.Empty(err, "PasswordIsValid does not return an error for a valid password")

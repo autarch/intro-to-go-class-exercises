@@ -34,3 +34,11 @@ func (u User) PasswordIsValid(p string) (bool, error) {
 
 	return sha1.Sum([]byte(p)) == u.password, nil
 }
+
+func (u User) Username() username {
+	return u.username
+}
+
+func (u *User) SetUsername(new string) {
+	u.username = username(new)
+}
