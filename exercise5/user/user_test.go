@@ -13,24 +13,24 @@ func TestNew(t *testing.T) {
 	assert.NotEqual(t, err, nil, "got an error when the username is empty")
 	assert.Equal(
 		t,
-		err,
 		errors.New("The username must be a non-empty string."),
+		err,
 		"got the expected error for an empty username",
 	)
-	assert.Equal(t, user, User{}, "user returned on error is empty")
+	assert.Equal(t, User{}, user, "user returned on error is empty")
 
 	u, err = NewUser("username", "")
 
 	assert.NotEqual(t, err, nil, "got an error when the password is empty")
 	assert.Equal(
 		t,
-		err,
 		errors.New("The password must be a non-empty string."),
+		err,
 		"got the expected error for an empty password",
 	)
-	assert.Equal(t, user, User{}, "user returned on error is empty")
+	assert.Equal(t, User{}, user, "user returned on error is empty")
 
 	u, err = NewUser("username", "password")
-	assert.Equal(t, err, nil, "got no error when username and password are both non-empty")
+	assert.Equal(t, nil, err, "got no error when username and password are both non-empty")
 	assert.NotEmpty(t, u, "user returned on success is not empty")
 }

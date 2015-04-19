@@ -20,8 +20,8 @@ func TestAdd(t *testing.T) {
 	}
 	for _, c := range cases {
 		assert.Equal(
-			Add(c[0], c[1]),
 			c[2],
+			Add(c[0], c[1]),
 			"%d + %d = %d",
 			c[0], c[1], c[2],
 		)
@@ -42,8 +42,8 @@ func TestSub(t *testing.T) {
 	}
 	for _, c := range cases {
 		assert.Equal(
-			Sub(c[0], c[1]),
 			c[2],
+			Sub(c[0], c[1]),
 			"%d - %d = %d",
 			c[0], c[1], c[2],
 		)
@@ -64,8 +64,8 @@ func TestMult(t *testing.T) {
 	}
 	for _, c := range cases {
 		assert.Equal(
-			Mult(c[0], c[1]),
 			c[2],
+			Mult(c[0], c[1]),
 			"%d * %d = %d",
 			c[0], c[1], c[2],
 		)
@@ -96,8 +96,8 @@ func TestDiv(t *testing.T) {
 		assert.Equal(err, c.err, "got expected error or nil from %d / %d", c.a, c.b)
 		if c.err == nil {
 			assert.Equal(
-				r,
 				c.r,
+				r,
 				"%d / %d = %f",
 				c.a, c.b, c.r,
 			)
@@ -121,8 +121,8 @@ func TestSum(t *testing.T) {
 		v := c[0 : len(c)-1]
 		r := c[len(c)-1]
 		assert.Equal(
-			Sum(v...),
 			r,
+			Sum(v...),
 			"sum of %v = %d",
 			v,
 			r,

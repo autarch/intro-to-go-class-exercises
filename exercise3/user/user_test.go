@@ -38,10 +38,10 @@ func TestType(t *testing.T) {
 
 	user := User{}
 	userType := reflect.TypeOf(user)
-	if !assert.Equal(userType.Kind(), reflect.Struct, "User", "User type's kind is Struct") {
+	if !assert.Equal(reflect.Struct, userType.Kind(), "User", "User type's kind is Struct") {
 		t.Fatal("Cannot continue unless the User type is a struct")
 	}
-	if !assert.Equal(userType.NumField(), 2, "User type has two fields") {
+	if !assert.Equal(2, userType.NumField(), "User type has two fields") {
 		t.Fatal("Cannot continue unless the User type has exactly two fields")
 	}
 
@@ -65,13 +65,13 @@ func TestType(t *testing.T) {
 			t.Fatal("Cannot continue unless the User type has a " + f + " field")
 		}
 
-		if !assert.Equal(field.Type.Name(), info.name,
+		if !assert.Equal(info.name, field.Type.Name(),
 			"User type's "+f+" field is a "+info.name) {
 
 			t.Fatal("Cannot continue unless the User." + f + " type name is " + info.name)
 		}
 
-		if !assert.Equal(field.Type.Kind(), info.kind,
+		if !assert.Equal(info.kind, field.Type.Kind(),
 			"User type's "+f+" field is a "+info.kind.String()) {
 
 			t.Fatal("Cannot continue unless the User." + f + " type kind is " + info.kind.String())
@@ -79,7 +79,7 @@ func TestType(t *testing.T) {
 	}
 
 	field, _ := userType.FieldByName("password")
-	if !assert.Equal(field.Type.Elem(), reflect.TypeOf(byte(0)), "password field is an array of bytes") {
+	if !assert.Equal(reflect.TypeOf(byte(0)), field.Type.Elem(), "password field is an array of bytes") {
 		t.Fatal("Cannot continue unless the User.password field is an array of bytes")
 	}
 	if !assert.Equal(field.Type.Len(), 20, "password field's array length is 20 bytes") {
@@ -91,12 +91,12 @@ func TestFunctions(t *testing.T) {
 	assert := assert.New(t)
 
 	u := NewUser("ringo", "apple")
-	if !assert.Equal(reflect.TypeOf(u).Name(), "User", "NewUser() returns a User struct") {
+	if !assert.Equal("User", reflect.TypeOf(u).Name(), "NewUser() returns a User struct") {
 		t.Fatal("Cannot continue unless NewUser() returns a User struct")
 	}
 
-	assert.Equal(u.username, username("ringo"), "the returned user's username is \"ringo\"")
-	assert.Equal(u.password, password(sha1.Sum([]byte("apple"))),
+	assert.Equal(username("ringo"), u.username, "the returned user's username is \"ringo\"")
+	assert.Equal(password(sha1.Sum([]byte("apple")), u.password),
 		"the returned user's password is the hash for \"apple\"")
 
 	assert.True(PasswordIsValid(u, "apple"), "PasswordIsValid returns true for a matching password")

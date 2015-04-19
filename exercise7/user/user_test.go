@@ -11,7 +11,7 @@ func TestMethods(t *testing.T) {
 	assert := assert.New(t)
 
 	u, err := NewUser("ringo", "apple")
-	if !assert.Equal(reflect.TypeOf(u).Name(), "User", "NewUser() returns a User struct") {
+	if !assert.Equal("User", reflect.TypeOf(u).Name(), "NewUser() returns a User struct") {
 		t.Fatal("Cannot continue unless NewUser() returns a User struct")
 	}
 
