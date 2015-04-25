@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -11,13 +12,12 @@ func main() {
 		log.Fatal("This program expects 3 arguments - two numbers and an operator")
 	}
 
-	var num1, num2 int64
-	_, err := fmt.Sscan(os.Args[1], &num1)
+	num1, err := strconv.ParseInt(os.Args[1], 10, 64)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	_, err = fmt.Sscan(os.Args[2], &num2)
+	num2, err := strconv.ParseInt(os.Args[2], 10, 64)
 	if err != nil {
 		log.Fatal(err)
 	}

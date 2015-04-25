@@ -8,7 +8,7 @@ operation (+ or *), and then two numbers. The numbers will always be integers.
    > exercise1 4 5 *
    20
 
-Scan the numbers into int64 values using the fmt package.
+Parse the numbers into int64 values using the strconv package.
 
 If the program is given the wrong number of arguments, log a fatal error using
 log.Fatal() with this message:
