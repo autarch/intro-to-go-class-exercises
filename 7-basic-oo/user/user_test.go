@@ -31,5 +31,4 @@ func TestMethods(t *testing.T) {
 	ok, err = u.PasswordIsValid("")
 	assert.False(ok, "PasswordIsValid returns false for empty password")
 	assert.NotEmpty(err, "PasswordIsValid return an error for an empty password")
-
 }
