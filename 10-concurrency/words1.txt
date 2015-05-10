@@ -1,0 +1,7 @@
+dog
+cat
+pig
+chicken
+cow
+pig
+turkey

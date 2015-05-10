@@ -1,0 +1,11 @@
+cat - 1
+chicken - 2
+circle - 4
+cow - 2
+dog - 2
+elephant - 2
+pig - 3
+rhombus - 4
+square - 2
+triangle - 2
+turkey - 1

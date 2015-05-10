@@ -1,0 +1,10 @@
+pig
+cow
+chicken
+square
+rhombus
+rhombus
+rhombus
+elephant
+triangle
+dog

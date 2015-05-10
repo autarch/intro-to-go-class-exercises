@@ -1,0 +1,8 @@
+square
+circle
+triangle
+rhombus
+circle
+circle
+circle
+elephant
