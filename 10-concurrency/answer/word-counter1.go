@@ -15,8 +15,7 @@ func main() {
 	c3 := makeReader("words3.txt", done)
 
 	i := 0
-Outer:
-	for {
+	for i < 3 {
 		select {
 		case w := <-c1:
 			words[w]++
@@ -26,9 +25,6 @@ Outer:
 			words[w]++
 		case <-done:
 			i++
-			if i == 3 {
-				break Outer
-			}
 		}
 	}
 
