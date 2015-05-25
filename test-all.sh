@@ -3,6 +3,9 @@
 set -e
 
 for dir in */answer/*; do
+    if [[ ! -d $dir ]]; then
+        continue
+    fi
     pushd $dir
     if [[ -n $(grep 'package main' *.go) ]]; then
         go build
