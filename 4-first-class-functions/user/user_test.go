@@ -20,13 +20,13 @@ func TestPasswordCheckAnd(t *testing.T) {
 	}
 
 	PasswordCheckAnd(user, "pw1", pass, fail)
-	assert.Equal(t, "bob", pName, "bob user was passed on successful password check")
-	assert.Equal(t, "", fName, "the fail function was not called on a successful password")
+	assert.Equal(t, username("bob"), pName, "bob user was passed on successful password check")
+	assert.Equal(t, username(""), fName, "the fail function was not called on a successful password")
 
 	pName = ""
 	PasswordCheckAnd(user, "bad pw", pass, fail)
-	assert.Equal(t, "", pName, "the success function was not called on a failed password check")
-	assert.Equal(t, "bob", fName, "bob user was passed on failed password check")
+	assert.Equal(t, username(""), pName, "the success function was not called on a failed password check")
+	assert.Equal(t, username("bob"), fName, "bob user was passed on failed password check")
 }
 
 func TestPasswordCheckFunc(t *testing.T) {
