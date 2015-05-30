@@ -20,8 +20,8 @@ dealing with floating point precision issues.
 The Sum function takes an arbitrary number of integers and returns their
 sum. If given *no* arguments, it returns 0.
 
-The Mult() function returns 0 when asked to divide by 0. Feel free to fix it
-after you've found it through testing.
+The Mult() function has a bug. Feel free to fix it after you've found it
+through testing.
 
 Feel free to use the assert package. See
 http://godoc.org/github.com/stretchr/testify/assert for details.
