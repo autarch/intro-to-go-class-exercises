@@ -1,7 +1,7 @@
 /*
 
-Write a very simply calculator program that takes three arguments, the
-operation (+ or *), and then two numbers. The numbers will always be integers.
+Write a very simple calculator program that takes three arguments, two numbers
+and then the operation. The numbers will always be integers.
 
    > exercise1 2 4 +
    6
