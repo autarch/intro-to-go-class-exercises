@@ -11,7 +11,11 @@ and then the operation. The numbers will always be integers.
 Note that the the shell will expand an asterisk (*) in place, so you need to
 quote it when passing it on the command line.
 
-Parse the numbers into int64 values using the strconv package.
+The arguments will be available in the os.Args variable, which a string slice
+([]string).
+
+Parse the numbers into int64 values using strconv.ParseInt() function. See
+http://golang.org/pkg/strconv/#ParseInt for documentation.
 
 If the program is given the wrong number of arguments, log a fatal error using
 log.Fatal() with this message:
