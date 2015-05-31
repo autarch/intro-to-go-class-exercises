@@ -5,8 +5,11 @@ and then the operation. The numbers will always be integers.
 
    > exercise1 2 4 +
    6
-   > exercise1 4 5 *
+   > exercise1 4 5 "*"
    20
+
+Note that the the shell will expand an asterisk (*) in place, so you need to
+quote it when passing it on the command line.
 
 Parse the numbers into int64 values using the strconv package.
 
