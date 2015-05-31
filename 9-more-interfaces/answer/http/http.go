@@ -1,7 +1,7 @@
 package http
 
 type HTTPError interface {
-	Error() string
+	error
 	HTTPStatus() uint
 }
 
