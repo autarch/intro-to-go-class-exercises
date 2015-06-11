@@ -7,7 +7,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-type HTTPForbiddenError httpError
+type myError struct {
+	status  uint
+	message string
+}
+
+type HTTPForbiddenError myError
 
 func NewHTTPForbiddenError() HTTPForbiddenError {
 	return HTTPForbiddenError{status: 403, message: "Forbidden"}
