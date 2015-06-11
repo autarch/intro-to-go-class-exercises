@@ -34,6 +34,21 @@ var cases = []testprog.TestCase{
 		Stderr: nil,
 	},
 	testprog.TestCase{
+		Args:   []string{"4", "5", "*"},
+		Stdout: "20",
+		Stderr: nil,
+	},
+	testprog.TestCase{
+		Args:   []string{"-4", "-5", "*"},
+		Stdout: "20",
+		Stderr: nil,
+	},
+	testprog.TestCase{
+		Args:   []string{"-4", "5", "*"},
+		Stdout: "-20",
+		Stderr: nil,
+	},
+	testprog.TestCase{
 		Args:   []string{"-42", "+"},
 		Stdout: "",
 		Stderr: regexp.MustCompile("This program expects 3 arguments - two numbers and an operator"),
