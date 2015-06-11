@@ -23,7 +23,7 @@ This will look something like this:
     if err != nil {
         panic(err)
     }
-    scanner := bufio.NewScanner(f)
+    s := bufio.NewScanner(f)
     for s.Scan() {
         word := s.Text()
     }
