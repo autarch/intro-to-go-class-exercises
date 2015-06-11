@@ -9,7 +9,7 @@ functions:
 - Add(a, b int) int
 - Sub(a, b int) int
 - Mult(a, b int) int
-- Div(a, b int) (float, err)
+- Div(a, b int) (float64, err)
 - Sum(v ...int) int
 
 The Div() function returns an error when asked to divide by 0. The text of the
