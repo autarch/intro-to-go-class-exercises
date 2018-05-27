@@ -18,10 +18,10 @@ func FindBin(t *testing.T) string {
 
 	_, err = os.Open(absBinary)
 	if err != nil {
-		t.Fatal("Looks like there is no " + binary + " binary here. Did you run go build?")
+		t.Fatalf("Looks like there is no %s binary here. Did you run go build?", binary)
 	}
 
-	t.Log("Found a binary named " + binary)
+	t.Logf("Found a binary named %s", binary)
 
 	return absBinary
 }

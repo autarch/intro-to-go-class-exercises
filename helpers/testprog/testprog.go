@@ -3,7 +3,7 @@ package testprog
 import (
 	"io/ioutil"
 	"os/exec"
-	"path"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"testing"
@@ -26,7 +26,7 @@ func TestProgram(t *testing.T, cases []TestCase, trim bool) {
 	for _, c := range cases {
 		cmd := exec.Command(program, c.Args...)
 
-		ran := path.Base(program) + " " + strings.Join(c.Args, " ")
+		ran := filepath.Base(program) + " " + strings.Join(c.Args, " ")
 
 		stdout, err := cmd.StdoutPipe()
 		if err != nil {
@@ -55,24 +55,30 @@ func TestProgram(t *testing.T, cases []TestCase, trim bool) {
 		err = cmd.Wait()
 
 		if err != nil && c.Stderr == nil {
-			assert.Fail("Ran '" + ran + "' and got an unexpected error: " + string(error))
+			assert.Fail(`Ran "%s" and got an unexpected error: %s`, error, ran)
 		} else {
 			if c.Stderr != nil {
 				if err != nil {
-					assert.Regexp(c.Stderr, string(error),
-						"stderr from "+program+" matches \""+c.Stderr.String()+"\"")
+					assert.Regexp(
+						c.Stderr, string(error),
+						`stderr from "%s" matches "%s"`,
+						ran, c.Stderr.String(),
+					)
 				} else {
-					assert.Fail("Ran '" + ran + "' and expected an error matching \"" +
-						c.Stderr.String() +
-						"\" but there was no error (stdout was \"" + string(output) + "\")")
+					assert.Fail(
+						`Ran '%s' and expected an error matching "%s" but there was no error (stdout was "%s")`,
+						ran, c.Stderr.String(), string(output),
+					)
 				}
 			} else if len(c.Stdout) > 0 {
 				o := string(output)
 				if trim {
 					o = strings.TrimSpace(o)
 				}
-				assert.Equal(c.Stdout, o,
-					"stdout from '"+ran+"' should be \""+c.Stdout+"\"")
+				assert.Equal(
+					c.Stdout, o,
+					`stdout from "%s" should be "%s"`, ran, c.Stdout,
+				)
 			} else {
 				t.Fatal("test case without stdout or stderr!")
 			}
