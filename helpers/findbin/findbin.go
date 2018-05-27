@@ -2,7 +2,7 @@ package findbin
 
 import (
 	"os"
-	"path"
+	"path/filepath"
 	"testing"
 )
 
@@ -12,9 +12,9 @@ func FindBin(t *testing.T) string {
 		t.Fatal(err)
 	}
 
-	binary := path.Base(dir)
+	binary := filepath.Base(dir)
 
-	absBinary := path.Join(dir, binary)
+	absBinary := filepath.Join(dir, binary)
 
 	_, err = os.Open(absBinary)
 	if err != nil {
