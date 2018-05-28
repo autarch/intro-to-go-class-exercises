@@ -20,7 +20,7 @@ func TestID(t *testing.T) {
 
 	u, _ := NewUser("ringo", "apple")
 
-	if !assert.Equal("Name", reflect.TypeOf(u.Name()).Name(), "Name() returns an Name variable") {
+	if !assert.Equal("Name", reflect.TypeOf(u.Name()).Name(), "Name() returns a Name variable") {
 		t.Fatal("Cannot continue unless Name() returns an Name variable")
 	}
 

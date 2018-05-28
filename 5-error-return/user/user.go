@@ -16,9 +16,9 @@ an error. The errors you should use are:
 
 Change the PasswordIsValid() function to also return two values, a boolean
 indicating whether there was a match and an error. If the password you get is
-empty, then return an false and an error with the message "The password must
-be a non-empty string." If the password is non-empty but doesn't match, this
-is not an error, just return false and a nil error.
+empty, then return a false boolean and an error with the message "The password
+must be a non-empty string." If the password is non-empty but doesn't match,
+this is not an error, just return false and a nil error.
 
 Use the errors.New() function create the errors.
 

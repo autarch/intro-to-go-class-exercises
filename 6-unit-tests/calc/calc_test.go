@@ -1,7 +1,7 @@
 /*
 
 This exercise is a bit different. This time you're going to write tests for my
-code, instead of writing code to be tested.
+code instead of writing code to be tested.
 
 The package you're testing is the "calc" package. It implements the following
 functions:

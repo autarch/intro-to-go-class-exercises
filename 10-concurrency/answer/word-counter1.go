@@ -3,12 +3,13 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"sort"
 )
 
 func main() {
-	words := map[string]int{}
+	words := make(map[string]int)
 	done := make(chan bool)
 	c1 := makeReader("words1.txt", done)
 	c2 := makeReader("words2.txt", done)
@@ -44,7 +45,7 @@ func makeReader(file string, done chan<- bool) <-chan string {
 	go func() {
 		f, err := os.Open(file)
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 
 		s := bufio.NewScanner(f)

@@ -61,20 +61,20 @@ func TestType(t *testing.T) {
 	}
 	for f, info := range fields {
 		field, ok := userType.FieldByName(f)
-		if !assert.True(ok, "User type has a field named \""+f+"\"") {
-			t.Fatal("Cannot continue unless the User type has a " + f + " field")
+		if !assert.True(ok, `User type has a field named "%s"`, f) {
+			t.Fatalf("Cannot continue unless the User type has a %s field", f)
 		}
 
 		if !assert.Equal(info.name, field.Type.Name(),
-			"User type's "+f+" field is a "+info.name) {
+			"User type's %s field is a %s", f, info.name) {
 
-			t.Fatal("Cannot continue unless the User." + f + " type name is " + info.name)
+			t.Fatalf("Cannot continue unless the User.%s type name is a %s", f, info.name)
 		}
 
 		if !assert.Equal(info.kind, field.Type.Kind(),
-			"User type's "+f+" field is a "+info.kind.String()) {
+			"User type's %s field is a %s", f, info.kind.String()) {
 
-			t.Fatal("Cannot continue unless the User." + f + " type kind is " + info.kind.String())
+			t.Fatalf("Cannot continue unless the User.%s type kind is %s", f, info.kind.String())
 		}
 	}
 
@@ -95,9 +95,9 @@ func TestFunctions(t *testing.T) {
 		t.Fatal("Cannot continue unless NewUser() returns a User struct")
 	}
 
-	assert.Equal(username("ringo"), u.username, "the returned user's username is \"ringo\"")
+	assert.Equal(username("ringo"), u.username, `the returned user's username is "ringo"`)
 	assert.Equal(password(sha1.Sum([]byte("apple"))), u.password,
-		"the returned user's password is the hash for \"apple\"")
+		`the returned user's password is the hash for "apple"`)
 
 	assert.True(PasswordIsValid(u, "apple"), "PasswordIsValid returns true for a matching password")
 	assert.False(PasswordIsValid(u, "orange"), "PasswordIsValid returns false for a non-matching password")

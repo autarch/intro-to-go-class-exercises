@@ -5,12 +5,13 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"sort"
 )
 
 func main() {
-	words := map[string]int{}
+	words := make(map[string]int)
 
 	for _, n := range []string{"words1.txt", "words2.txt", "words3.txt"} {
 		countWords(n, words)
@@ -30,7 +31,7 @@ func main() {
 func countWords(file string, words map[string]int) {
 	f, err := os.Open(file)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	s := bufio.NewScanner(f)

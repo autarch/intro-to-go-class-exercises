@@ -12,7 +12,7 @@ func main() {
 		log.Fatal("This program expects at least 1 argument")
 	}
 
-	strings := map[string]int{}
+	strings := make(map[string]int)
 	for _, s := range os.Args[1:] {
 		if _, found := strings[s]; found {
 			strings[s]++
@@ -21,8 +21,8 @@ func main() {
 		}
 	}
 
-	keys := []string{}
-	for k, _ := range strings {
+	var keys []string
+	for k := range strings {
 		keys = append(keys, k)
 	}
 

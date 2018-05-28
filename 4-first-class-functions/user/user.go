@@ -8,7 +8,7 @@ PasswordCheckAnd(), will take four arguments. The first argument is a User
 struct. The second is a password string. The next two arguments are functions
 themselves, and they have the following signature:
 
-    func X(u *User) { ... }
+    func X(u *User)
 
 In other words, these are functions that accept a single argument, a pointer
 to a User struct, and return nothing.
@@ -19,7 +19,7 @@ matches, and the second if it doesn't.
 The other function you will create is called PasswordCheckFunc. This function
 takes a user and returns a function with the following signature:
 
-    func X(password string) bool { ... }
+    func X(password string) bool
 
 This function will take a password and return true or false, based on whether
 it matches the user's password. You'll close over the passed in User struct in

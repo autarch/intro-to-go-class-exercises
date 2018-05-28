@@ -14,7 +14,7 @@ Then create several types which implement this interface:
 
 Since each of these types consists of the same two elements (a status code and
 a message), it will be easiest to do this by creating a single struct type and
-then create the types above using that as the underlying type.
+then create the specific error code types as aliases to that type.
 
 Create constructors named NewHTTPBadRequestError() and NewHTTPNotFoundError()
 for those two types. The message for each error can be anything you want (but

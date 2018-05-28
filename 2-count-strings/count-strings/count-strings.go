@@ -31,6 +31,8 @@ You can either use make() or create an empty map:
     // The {} creates an empty (but initialized) map
     foo := map[int]float{}
 
+The use of make() is more idiomatic and what you'll see in most Go code.
+
 To run the tests, run "go build", then "go test -v".
 
     > go build && go test -v
