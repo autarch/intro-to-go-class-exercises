@@ -3,6 +3,7 @@ package findbin
 import (
 	"os"
 	"path/filepath"
+	"runtime"
 	"testing"
 )
 
@@ -13,6 +14,9 @@ func FindBin(t *testing.T) string {
 	}
 
 	binary := filepath.Base(dir)
+	if runtime.GOOS == "windows" {
+		binary += ".exe"
+	}
 
 	absBinary := filepath.Join(dir, binary)
 
