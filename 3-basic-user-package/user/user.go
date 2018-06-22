@@ -20,7 +20,7 @@ and store it in the User struct. You'll also use the sha1 package in the
 PasswordIsValid() function to hash the string that you're passed.
 
 Note that sha1.Sum() expects a byte array ([]byte), not a string, so you'll
-need to convert the strings to []byte when passing them to sha1.Sum().
+need to convert the password to []byte when passing them to sha1.Sum().
 
 To run the tests, run "go test -v".
 
