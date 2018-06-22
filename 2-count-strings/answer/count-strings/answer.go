@@ -14,11 +14,7 @@ func main() {
 
 	strings := make(map[string]int)
 	for _, s := range os.Args[1:] {
-		if _, found := strings[s]; found {
-			strings[s]++
-		} else {
-			strings[s] = 1
-		}
+		strings[s]++
 	}
 
 	var keys []string
