@@ -14,7 +14,7 @@ Add two new methods. The Username() method should return the username of the
 user it is called on (as the username type, not a string).
 
 The SetUsername() method should accept a *string* and set the username of the
-user.
+user. This method should not return anything.
 
 (Yes, I know I just ranted about the evils of mutable state not more than a
 few minutes ago, but I want you to know how to do these things, even if you
