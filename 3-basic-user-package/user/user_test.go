@@ -18,19 +18,19 @@ func TestType(t *testing.T) {
 
 	assert := assert.New(t)
 
-	if !assert.True(regexp.MustCompile("type username string").Match(u),
+	if !assert.True(regexp.MustCompile(`type\s+username\s+string`).Match(u),
 		"user.go defines the username type correctly") {
 
 		t.Fatal("cannot continue tests without username type")
 	}
 
-	if !assert.True(regexp.MustCompile(`type password \[20\]byte`).Match(u),
+	if !assert.True(regexp.MustCompile(`type\s+password\s+\[20\]byte`).Match(u),
 		"user.go defines the password type correctly") {
 
 		t.Fatal("cannot continue tests without password type")
 	}
 
-	if !assert.True(regexp.MustCompile("type User struct {").Match(u),
+	if !assert.True(regexp.MustCompile(`type\s+User\s+struct\s+{`).Match(u),
 		"user.go defines a User struct type") {
 
 		t.Fatal("cannot continue tests without User struct type")
