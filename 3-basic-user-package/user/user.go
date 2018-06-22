@@ -12,8 +12,8 @@ Create a package named user that defines the following types:
 
 The package should implement the following functions:
 
-- func NewUser(username string, password string) User { ... }
-- func PasswordIsValid(user User, password string) bool { ... }
+- func NewUser(u string, p string) User { ... }
+- func PasswordIsValid(u User, p string) bool { ... }
 
 The NewUser() function should hash the password using the sha1.Sum() function
 and store it in the User struct. You'll also use the sha1 package in the
