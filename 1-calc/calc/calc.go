@@ -34,6 +34,10 @@ To run the tests, run "go build", then "go test -v".
 
     > go build && go test -v
 
+You can also run your program directly to manually test it:
+
+    > go build && ./calc 2 3 +
+
 You're done when all the tests pass.
 
 */
