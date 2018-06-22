@@ -4,9 +4,9 @@ For this exercise, you'll start with the code you just created for exercise
 #3. You can paste it in below.
 
 You're going to create two new functions in this package. The first,
-PasswordCheckAnd(), will take four arguments. The first argument is a User
-struct. The second is a password string. The next two arguments are functions
-themselves, and they have the following signature:
+PasswordCheckAnd(), will take four arguments and return nothing. The first
+argument is a User struct. The second is a password string. The next two
+arguments are functions themselves, and they have the following signature:
 
     func X(u *User)
 
