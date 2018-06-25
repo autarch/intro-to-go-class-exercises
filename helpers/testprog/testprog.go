@@ -1,6 +1,7 @@
 package testprog
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os/exec"
 	"path/filepath"
@@ -24,6 +25,10 @@ func TestProgram(t *testing.T, cases []TestCase, trim bool) {
 	assert := assert.New(t)
 
 	for _, c := range cases {
+		if c.Stdout == "" && c.Stderr == nil {
+			t.Fatal("test case without stdout or stderr!")
+		}
+
 		cmd := exec.Command(program, c.Args...)
 
 		ran := filepath.Base(program) + " " + strings.Join(c.Args, " ")
@@ -56,31 +61,43 @@ func TestProgram(t *testing.T, cases []TestCase, trim bool) {
 
 		if err != nil && c.Stderr == nil {
 			assert.Fail(`Ran "%s" and got an unexpected error: %s`, error, ran)
-		} else {
-			if c.Stderr != nil {
-				if err != nil {
-					assert.Regexp(
-						c.Stderr, string(error),
-						`stderr from "%s" matches "%s"`,
-						ran, c.Stderr.String(),
-					)
-				} else {
-					assert.Fail(
-						`Ran '%s' and expected an error matching "%s" but there was no error (stdout was "%s")`,
-						ran, c.Stderr.String(), string(output),
-					)
-				}
-			} else if len(c.Stdout) > 0 {
-				o := string(output)
-				if trim {
-					o = strings.TrimSpace(o)
-				}
-				assert.Equal(
-					c.Stdout, o,
-					`stdout from "%s" should be "%s"`, ran, c.Stdout,
+			continue
+		}
+
+		if c.Stderr != nil {
+			if err != nil {
+				assert.Regexp(
+					c.Stderr, string(error),
+					`stderr from "%s" matches "%s"`,
+					ran, c.Stderr.String(),
 				)
 			} else {
-				t.Fatal("test case without stdout or stderr!")
+				assert.Fail(
+					fmt.Sprintf(
+						`Ran '%s' and expected an error matching "%s" but there was no error (stdout was "%s")`,
+						ran, c.Stderr.String(), string(output),
+					),
+				)
+			}
+		}
+
+		if c.Stdout != "" {
+			o := string(output)
+			if trim {
+				o = strings.TrimSpace(o)
+			}
+			if o == "" && len(error) > 0 {
+				assert.Fail(
+					fmt.Sprintf(
+						`It looks like you sent output to stderr instead of stdout. Did you use the log package to print your output? Stderr contains "%s"`,
+						strings.TrimSpace(string(error)),
+					),
+				)
+			} else {
+				assert.Equal(
+					c.Stdout, o,
+					`stdout from "%s" should be "%s" but got "%s"`, ran, c.Stdout, o,
+				)
 			}
 		}
 	}
