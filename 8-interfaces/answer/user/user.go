@@ -5,16 +5,16 @@ import (
 	"errors"
 )
 
-type Name string
+type EntityName string
 type password [20]byte
 
 type User struct {
-	username Name
+	username EntityName
 	password password
 }
 
 type HasName interface {
-	Name() Name
+	Name() EntityName
 }
 
 func NewUser(u string, p string) (User, error) {
@@ -26,7 +26,7 @@ func NewUser(u string, p string) (User, error) {
 	}
 
 	return User{
-		username: Name(u),
+		username: EntityName(u),
 		password: password(sha1.Sum([]byte(p))),
 	}, nil
 }
@@ -39,14 +39,14 @@ func (u User) PasswordIsValid(p string) (bool, error) {
 	return sha1.Sum([]byte(p)) == u.password, nil
 }
 
-func (u User) Username() Name {
+func (u User) Username() EntityName {
 	return u.username
 }
 
 func (u *User) SetUsername(new string) {
-	u.username = Name(new)
+	u.username = EntityName(new)
 }
 
-func (u User) Name() Name {
+func (u User) Name() EntityName {
 	return u.Username()
 }

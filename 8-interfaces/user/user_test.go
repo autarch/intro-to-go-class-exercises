@@ -8,10 +8,10 @@ import (
 )
 
 type Group struct {
-	name Name
+	name EntityName
 }
 
-func (g Group) Name() Name {
+func (g Group) Name() EntityName {
 	return g.name
 }
 
@@ -20,7 +20,7 @@ func TestID(t *testing.T) {
 
 	u, _ := NewUser("ringo", "apple")
 
-	if !assert.Equal("Name", reflect.TypeOf(u.Name()).Name(), "Name() returns a Name variable") {
+	if !assert.Equal("EntityName", reflect.TypeOf(u.Name()).Name(), "Name() returns an EntityName variable") {
 		t.Fatal("Cannot continue unless Name() returns an Name variable")
 	}
 
@@ -30,6 +30,6 @@ func TestID(t *testing.T) {
 	assert.Equal(g.name, getName(g), "HasName interface works for Group type")
 }
 
-func getName(v HasName) Name {
+func getName(v HasName) EntityName {
 	return v.Name()
 }
