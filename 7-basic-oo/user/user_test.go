@@ -50,7 +50,7 @@ func TestMethods(t *testing.T) {
 		t.Fatal("Cannot continue unless NewUser() returns a User struct")
 	}
 
-	assert.Equal(username("ringo"), u.Username(), "Username method returns username")
+	assert.Equal(username("ringo"), u.Username(), "Username method returns the correct username value")
 
 	u.SetUsername("shiina")
 	assert.Equal(username("shiina"), u.Username(), "Username method returns new username after call to SetUsername")
