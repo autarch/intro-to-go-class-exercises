@@ -1,11 +1,46 @@
 package user
 
 import (
+	"errors"
 	"reflect"
 	"testing"
 
+	"github.com/autarch/intro-to-go-class-exercises/helpers/usertests"
 	"github.com/stretchr/testify/assert"
 )
+
+func TestTypes(t *testing.T) {
+	usertests.TestUserTypes(t, User{}, "username")
+}
+
+/* Copied from 5-error-return */
+func TestNew(t *testing.T) {
+	u, err := NewUser("", "password")
+
+	assert.NotEqual(t, err, nil, "got an error when the username is empty")
+	assert.Equal(
+		t,
+		errors.New("The username must be a non-empty string."),
+		err,
+		"got the expected error for an empty username",
+	)
+	assert.Equal(t, User{}, u, "user returned on error is empty")
+
+	u, err = NewUser("username", "")
+
+	assert.NotEqual(t, err, nil, "got an error when the password is empty")
+	assert.Equal(
+		t,
+		errors.New("The password must be a non-empty string."),
+		err,
+		"got the expected error for an empty password",
+	)
+	assert.Equal(t, User{}, u, "user returned on error is empty")
+
+	u, err = NewUser("username", "password")
+	assert.Equal(t, nil, err, "got no error when username and password are both non-empty")
+	assert.NotEmpty(t, u, "user returned on success is not empty")
+}
 
 func TestMethods(t *testing.T) {
 	assert := assert.New(t)

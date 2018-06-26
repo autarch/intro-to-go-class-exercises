@@ -3,8 +3,13 @@ package user
 import (
 	"testing"
 
+	"github.com/autarch/intro-to-go-class-exercises/helpers/usertests"
 	"github.com/stretchr/testify/assert"
 )
+
+func TestTypes(t *testing.T) {
+	usertests.TestUserTypes(t, User{}, "username")
+}
 
 func TestPasswordCheckAnd(t *testing.T) {
 	user := NewUser("bob", "pw1")

@@ -4,8 +4,13 @@ import (
 	"errors"
 	"testing"
 
+	"github.com/autarch/intro-to-go-class-exercises/helpers/usertests"
 	"github.com/stretchr/testify/assert"
 )
+
+func TestTypes(t *testing.T) {
+	usertests.TestUserTypes(t, User{}, "username")
+}
 
 func TestNew(t *testing.T) {
 	u, err := NewUser("", "password")
@@ -33,6 +38,10 @@ func TestNew(t *testing.T) {
 	u, err = NewUser("username", "password")
 	assert.Equal(t, nil, err, "got no error when username and password are both non-empty")
 	assert.NotEmpty(t, u, "user returned on success is not empty")
+}
+
+func TestPasswordIsValid(t *testing.T) {
+	u, err := NewUser("username", "password")
 
 	ok, err := PasswordIsValid(u, "bad")
 	assert.False(t, ok, "ok is false when password is invalid")
