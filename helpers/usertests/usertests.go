@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/autarch/testify/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestUserTypes(t *testing.T, u interface{}, nameTypeName string) {
