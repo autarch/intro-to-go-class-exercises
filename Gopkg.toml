@@ -24,10 +24,9 @@
 #   go-tests = true
 #   unused-packages = true
 
-
 [[constraint]]
   name = "github.com/stretchr/testify"
-  version = "1.2.2"
+  revision = "ffdc059bfe9ce6a4e144ba849dbedead332c6053"
 
 [prune]
   go-tests = true
