@@ -3,9 +3,9 @@
 Write a very simple calculator program that takes three arguments, two numbers
 and then the operation. The numbers will always be integers.
 
-   > exercise1 2 4 +
+   > ./calc 2 4 +
    6
-   > exercise1 4 5 "*"
+   > ./calc 4 5 "*"
    20
 
 Note that the the shell will expand an asterisk (*) in place, so you need to
