@@ -8,8 +8,8 @@ import (
 )
 
 var cases = []testprog.TestCase{
-	testprog.TestCase{
-		Args:   []string{"foo", "bar", "quux", "zub", "bar", "foo", "a", "bar"},
+	{
+		Args: []string{"foo", "bar", "quux", "zub", "bar", "foo", "a", "bar"},
 		Stdout: `a - 1
 bar - 3
 foo - 2
@@ -18,14 +18,14 @@ zub - 1
 `,
 		Stderr: nil,
 	},
-	testprog.TestCase{
-		Args:   []string{"foo", "foo", "foo", "bar"},
+	{
+		Args: []string{"foo", "foo", "foo", "bar"},
 		Stdout: `bar - 1
 foo - 3
 `,
 		Stderr: nil,
 	},
-	testprog.TestCase{
+	{
 		Args:   []string{},
 		Stdout: "",
 		Stderr: regexp.MustCompile("This program expects at least 1 argument"),

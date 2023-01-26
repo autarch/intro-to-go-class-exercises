@@ -45,7 +45,7 @@ In order to sort the words, you'll need to place all the keys of the master
 count map in an array, and then call sort.Strings() on that array. Then you
 can iterate over that sorted array and print the word and its count.
 
-The exact output you should see is in the expected.txt file. 
+The exact output you should see is in the expected.txt file.
 
 The easiest way to test your code is by running the following:
 
