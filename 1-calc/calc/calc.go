@@ -15,7 +15,9 @@ The arguments will be available in the os.Args variable, which is a string
 slice ([]string).
 
 Parse the numbers into int64 values using strconv.ParseInt() function. See
-http://golang.org/pkg/strconv/#ParseInt for documentation.
+http://golang.org/pkg/strconv/#ParseInt for documentation. If parsing
+fails, log an error using log.Fatal(). The content of the error can be
+anything you want (this is not tested).
 
 If the program is given the wrong number of arguments, log a fatal error using
 log.Fatal() with this message:
