@@ -1,9 +1,9 @@
 /*
 
 The goal for this exercise is to create an interface that represents HTTP
-errors. This interface will also implement the built-in Error interface.
+errors. This interface will also implement the built-in error interface.
 
-Call this interface HTTPError. It should require the Error interface (Error()
+Call this interface HTTPError. It should require the error interface (Error()
 string) as well as a method called HTTPStatus() which returns a uint value (an
 HTTP status code).
 
